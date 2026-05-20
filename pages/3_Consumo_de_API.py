@@ -5,6 +5,29 @@ import requests
 # Configuración de la página
 st.set_page_config(page_title="Gestión Corporativa Colombia - MockAPI", layout="wide")
 
+# --- Estilo Personalizado ---
+st.markdown("""
+    <style>
+    .main {
+        background-color: #F3E5F5;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #F3E5F5;
+    }
+    .stButton > button {
+        background-color: #E1BEE7;
+        color: #4A148C;
+        border-radius: 10px;
+        border: 1px solid #9C27B0;
+        transition: all 0.3s;
+    }
+    .stButton > button:hover {
+        background-color: #9C27B0;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 st.title("🏢 Gestión Corporativa: Vendedores y Sucursales en Colombia")
 st.markdown("""
 ### Objetivo
@@ -133,4 +156,3 @@ st.info(f"""
 - **Entidades:** `/vendedores` y `/sucursales`.
 - **Nota:** Si sigues viendo 404, asegúrate de que los nombres de los recursos en MockAPI coincidan exactamente (sin espacios ni mayúsculas).
 """)
-

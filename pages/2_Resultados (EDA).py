@@ -7,6 +7,29 @@ st.set_page_config(
     layout="wide"
 )
 
+# --- Estilo Personalizado ---
+st.markdown("""
+    <style>
+    .main {
+        background-color: #F3E5F5;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #F3E5F5;
+    }
+    .stButton > button {
+        background-color: #E1BEE7;
+        color: #4A148C;
+        border-radius: 10px;
+        border: 1px solid #9C27B0;
+        transition: all 0.3s;
+    }
+    .stButton > button:hover {
+        background-color: #9C27B0;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 st.title("📝 Plantilla de Entrega: Resultados del EDA")
 st.markdown("""
 ### Instrucciones

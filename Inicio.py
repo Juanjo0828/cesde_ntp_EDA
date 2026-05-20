@@ -12,7 +12,21 @@ st.set_page_config(
 st.markdown("""
     <style>
     .main {
-        background-color: #f8f9fa;
+        background-color: #F3E5F5;
+    }
+    [data-testid="stSidebar"] {
+        background-color: #F3E5F5;
+    }
+    .stButton > button {
+        background-color: #E1BEE7;
+        color: #4A148C;
+        border-radius: 10px;
+        border: 1px solid #9C27B0;
+        transition: all 0.3s;
+    }
+    .stButton > button:hover {
+        background-color: #9C27B0;
+        color: white;
     }
     .stAlert {
         border-radius: 10px;
@@ -106,4 +120,3 @@ with tech_col3:
 st.sidebar.success("👈 Usa el menú lateral para navegar entre las secciones del proyecto.")
 st.sidebar.markdown("---")
 st.sidebar.write("© 2026 - Proyecto Integrador de Analítica")
-
