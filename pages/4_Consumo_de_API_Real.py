@@ -181,19 +181,19 @@ if not df_usuario.empty:
         st.dataframe(df_usuario, use_container_width=True)
 
     else:
-        st.subheader("🎯 Panel de Análisis y Filtros Dinámicos")
+        st.subheader(" Panel de Análisis y Filtros Dinámicos")
         st.markdown("Usa los controles para segmentar la información y ver las métricas actualizadas.")
 
         col_f1, col_f2, col_f3 = st.columns([1, 1, 1])
         with col_f1:
             roles_disponibles = sorted(df_usuario["rol"].unique().tolist())
             selected_roles = st.multiselect(
-                "🎭 Seleccionar Roles:", roles_disponibles, default=roles_disponibles
+                " Seleccionar Roles:", roles_disponibles, default=roles_disponibles
             )
         with col_f2:
-            search_term = st.text_input("🔍 Buscar por Nombre/Apellido:", placeholder="Ej: Luis")
+            search_term = st.text_input(" Buscar por Nombre/Apellido:", placeholder="Ej: Luis")
         with col_f3:
-            doc_prefix = st.text_input("🔢 Documento inicia con:", placeholder="Ej: 98")
+            doc_prefix = st.text_input(" Documento inicia con:", placeholder="Ej: 98")
 
         filtered_df = df_usuario.copy()
         if selected_roles:
@@ -211,8 +211,8 @@ if not df_usuario.empty:
             filtered_df = filtered_df[mask]
 
         m1, m2, m3 = st.columns(3)
-        m1.metric("👤 Usuarios filtrados", len(filtered_df))
-        m2.metric("🏢 Total en Base de Datos", len(df_usuario))
+        m1.metric("Usuarios filtrados", len(filtered_df))
+        m2.metric("Total en Base de Datos", len(df_usuario))
         m3.metric(
             "🏷️ Roles Distintos",
             filtered_df["rol"].nunique() if not filtered_df.empty else 0,
