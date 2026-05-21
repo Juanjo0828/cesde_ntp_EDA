@@ -1,6 +1,12 @@
 #  PROYECTO INTEGRADOR - KNOWLY
 
-**Knowly** es una plataforma interactiva de analítica de datos diseñada para transformar información cruda en decisiones estratégicas. Este proyecto integra herramientas de análisis exploratorio, visualización avanzada y consumo de servicios web (APIs) para la gestión de usuarios y procesos corporativos.
+**Knowly** Es una plataforma interactiva de analítica de datos orientada al sector EdTech, diseñada para transformar la experiencia de aprendizaje y enseñar a convertir información cruda en decisiones estratégicas. Orientada a profesores, estudiantes y entornos corporativos, la app web redefine la gestión educativa a través de tres pilares tecnológicos:
+
+**Ecosistema de Aprendizaje Colaborativo:** Un entorno bifuncional tipo Platzi que permite a los estudiantes avanzar en rutas de conocimiento personalizadas y a los profesores administrar contenidos curriculares con facilidad.
+
+**Analítica Exploratoria y Visualización Avanzada:** Paneles dinámicos que procesan datos de rendimiento académico, transformando horas de estudio y calificaciones en gráficos interactivos que muestran el progreso real y las áreas de mejora.
+
+**Consumo Robusto de APIs:** Gestión automatizada de usuarios, roles, seguridad y métricas corporativas mediante la integración de servicios web eficientes, garantizando una plataforma escalable y fluida.
 
 ##  Tecnologías y Librerías Importadas
 
