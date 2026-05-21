@@ -103,6 +103,7 @@ if df is not None:
     else:
         st.info("Selecciona al menos una columna categórica para ver distribuciones.")
 
+
     # --- Paso 2: La Estructura ---
     st.header("Step 2: 🏗️ La Estructura")
     col1, col2, col3 = st.columns(3)
@@ -176,6 +177,7 @@ if df is not None:
     else:
         st.info("Selecciona columnas categóricas para ver los gráficos cualitativos.")
 
+
     # --- Conclusiones de Investigación ---
     st.header("📝 Resumen del analisis")
     st.markdown(f"""
@@ -193,7 +195,6 @@ st.title("Estudiantes por Programa Académico")
 
 df = pd.read_csv("Estudiantes_programas_academicos_y_Extension_20260319.csv")
 
-# Contar estudiantes por programa
 programas = (
     df["PROGRAMA"]
     .value_counts()
@@ -202,23 +203,99 @@ programas = (
 
 programas.columns = ["Programa Académico", "Cantidad de Estudiantes"]
 
-# Mostrar tabla
-st.subheader("Cantidad de estudiantes por programa")
-st.dataframe(programas)
 
-# Gráfico de barras
+st.subheader("Filtros")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    orden = st.selectbox(
+        "Ordenar por cantidad",
+        ["Mayor a menor", "Menor a mayor"]
+    )
+
+with col2:
+    top_n = st.slider(
+        "Cantidad de programas",
+        min_value=5,
+        max_value=len(programas),
+        value=15
+    )
+
+with col3:
+    min_est = int(programas["Cantidad de Estudiantes"].min())
+    max_est = int(programas["Cantidad de Estudiantes"].max())
+
+    rango = st.slider(
+        "Rango de estudiantes",
+        min_value=min_est,
+        max_value=max_est,
+        value=(min_est, max_est)
+    )
+
+programas_filtrados = programas[
+    (programas["Cantidad de Estudiantes"] >= rango[0]) &
+    (programas["Cantidad de Estudiantes"] <= rango[1])
+]
+
+ascending = orden == "Menor a mayor"
+
+programas_filtrados = programas_filtrados.sort_values(
+    by="Cantidad de Estudiantes",
+    ascending=ascending
+)
+
+programas_filtrados = programas_filtrados.head(top_n)
+
 fig = px.bar(
-    programas.head(15),
+    programas_filtrados,
     x="Cantidad de Estudiantes",
     y="Programa Académico",
     orientation="h",
-    title="Top 15 programas con más estudiantes",
-    text="Cantidad de Estudiantes"
+    text="Cantidad de Estudiantes",
+    title="Cantidad de estudiantes por programa"
 )
 
 fig.update_layout(
-    yaxis=dict(autorange="reversed"),
-    height=600
+    height=700
+)
+
+if not ascending:
+    fig.update_layout(
+        yaxis=dict(autorange="reversed")
+    )
+
+st.plotly_chart(fig, use_container_width=True)
+
+# -------- ------------
+
+st.write(df.columns.tolist())
+
+# -------- ------------
+
+st.title("Distribución por Sexo Biológico")
+
+df = pd.read_csv("Estudiantes_programas_academicos_y_Extension_20260319.csv")
+
+
+sexo = (
+    df["SEXO BIOLOGICO"]
+    .value_counts()
+    .reset_index()
+)
+sexo.columns = ["Sexo", "Cantidad"]
+
+fig = px.pie(
+    sexo,
+    names="Sexo",
+    values="Cantidad",
+    title="Distribución de estudiantes por sexo",
+    hole=0.4
+)
+
+fig.update_traces(
+    textposition='inside',
+    textinfo='percent+label'
 )
 
 st.plotly_chart(fig, use_container_width=True)
