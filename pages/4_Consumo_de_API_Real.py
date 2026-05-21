@@ -83,24 +83,7 @@ def post_usuario_data(data):
         st.error(f"Error de conexión: {e}")
         return False
 
-# --- Función para actualizar datos de la API (PUT) ---
-def put_usuario_data(data, usuario_id=None):
-    try:
-        endpoint = f"{API_BASE_URL}/{usuario_id}" if usuario_id else API_BASE_URL
-        response = requests.put(endpoint, json=data, timeout=10)
-        if response.status_code in (200, 201, 204):
-            st.success("Usuario actualizado exitosamente en la API.")
-            if response.text:
-                st.json(response.json() if response.headers.get('content-type', '').startswith('application/json') else {'response': response.text})
-            return True
-        else:
-            st.error(f"Error al actualizar: Status {response.status_code}")
-            if response.text:
-                st.write(response.text)
-            return False
-    except Exception as e:
-        st.error(f"Error de conexión: {e}")
-        return False
+
 
 # --- Carga de Datos ---
 with st.spinner("Conectando con la API..."):
